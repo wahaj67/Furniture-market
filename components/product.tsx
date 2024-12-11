@@ -14,7 +14,7 @@ const Product = () => {
     <>
       <section>
         <div className="px-8 py-12 text-[#2A254B] mt-12">
-          <h1 className="text-2xl">Our popular products</h1>
+          <h1 className="text-2xl text-center md:text-start">Our popular products</h1>
 
           
           <div className="flex flex-col md:flex-row gap-8 mt-8">

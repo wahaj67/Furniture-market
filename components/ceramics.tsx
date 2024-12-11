@@ -21,7 +21,7 @@ const Ceramics = () => {
                                 className="w-full h-[80%] object-cover transition-transform duration-300 ease-in-out hover:scale-105 hover:translate-y-1"
                             />
                             <div className="mt-4 text-[#2A254B]">
-                                <p className="py-2">The Dendy Chair</p>
+                                <p className="py-2">The Dandy Chair</p>
                                 <p>$250</p>
                             </div>
                         </div>
