@@ -1,7 +1,25 @@
 "use client";
+// import { addItem } from "@/redux/CartSlice";
 import Image from "next/image";
-import React from "react";
+import React  from "react";
+// import { useDispatch } from "react-redux";
+// interface IProd{
+//     id:string
+//     name:string
+//     price:number
+//     image:string
+// }
+
 const Cart = () => {
+
+    // const dispatch = useDispatch();
+    //  const handleAdd=(products:IProd)=>{
+    //      dispatch(addItem(products))
+    //  }
+    
+
+
+
     return (
         <>
             <div>
