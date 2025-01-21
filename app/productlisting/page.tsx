@@ -28,6 +28,7 @@ interface Iproduct {
   name: string;
   price: number;
   image: string;
+  quantitys:number
 }
 
 const ProductListing = () => {
@@ -99,6 +100,7 @@ const ProductListing = () => {
                         name: product.name,
                         price: product.price,
                         image: product.image,
+                        quantitys:product.qunantity||1
                       })
                     }
                     className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-black transition-colors duration-500 w-full sm:w-auto"

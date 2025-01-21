@@ -13,6 +13,15 @@
 
     const item = useSelector((state:RootState)=>state.cart)
     console.log(item,"ddd")
+    const menuItems = [
+      {name:'Plan pots',link:"/Planpots"},
+      {name:'Ceramics',link:'/ceramics'},
+      {name:'Tables',link:'/table'},
+      {name:'Chairs',link:'/chairs'},
+      {name:'Crockery',link:'/crockery'},
+      {name:'Tableware',link:'/tableware'},
+      {name:'Cutlery',link:'/cutlery'},
+    ]
 
     const toggleMenu = () => setMenuOpen(!menuOpen)
 
@@ -57,17 +66,9 @@
         
         <nav className="hidden lg:block py-4">
           <ul className="flex justify-center items-center gap-12 text-[#726E8D] text-base">
-            {[
-              "Plant pots",
-              "Ceramics",
-              "Tables",
-              "Chairs",
-              "Crockery",
-              "Tableware",
-              "Cutlery",
-            ].map((item) => (
-              <li key={item} className="hover:text-[#2A254B] transition-colors">
-                <Link href="/">{item}</Link>
+            {menuItems.map((item) => (
+              <li key={item.link} className="hover:text-[#2A254B] transition-colors">
+                <Link href={item.link}>{item.name}</Link>
               </li>
             ))}
           </ul>
@@ -90,17 +91,9 @@
           </div>
           <nav className="p-4">
             <ul className="flex flex-col gap-4 text-[#726E8D] text-base">
-              {[
-                "Plant pots",
-                "Ceramics",
-                "Tables",
-                "Chairs",
-                "Crockery",
-                "Tableware",
-                "Cutlery",
-              ].map((item) => (
-                <li key={item} className="hover:text-[#2A254B] transition-colors">
-                  <Link href="/">{item}</Link>
+              {menuItems.map((item) => (
+                <li key={item.link} className="hover:text-[#2A254B] transition-colors">
+                  <Link href={item.link}>{item.name}</Link>
                 </li>
               ))}
             </ul>

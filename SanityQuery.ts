@@ -71,3 +71,19 @@ export const getProductsByCategory = async (categorySlug: string) => {
     console.log(product)
     return product
   }
+
+  export const fetchProductsByCategory = async (slug: string) => {
+    const query = `
+      *[_type == "product" && category->slug.current == $slug] {
+        name,
+        price,
+        image,
+        category->{
+          title
+        }
+      }
+    `;
+  
+    const products = await client.fetch(query, { slug });
+    return products;
+  };
