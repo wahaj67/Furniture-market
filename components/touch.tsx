@@ -27,7 +27,7 @@ const Touch = () => {
                 </h1>
               </div>
               <div className="my-10">
-                <button className="bg-[#F9F9F9] py-4 px-4 rounded-[5px] text-[#2A254B]">
+                <button className="bg-[#F9F9F9] py-4 px-4 hover:bg-[#2A254B] hover:text-white  transition-colors duration-700 rounded-[5px] text-[#2A254B]">
                   Get in touch
                 </button>
               </div>

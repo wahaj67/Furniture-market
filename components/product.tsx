@@ -67,7 +67,7 @@ const Product = () => {
           
           <div className="my-10 flex justify-center items-center">
             <button
-              className="bg-[#F9F9F9] py-4 px-6 rounded-[5px] text-[#2A254B]"
+              className="bg-[#F9F9F9] py-4 px-6 hover:bg-[#2A254B] hover:text-white transition-colors duration-700 rounded-[5px] text-[#2A254B]"
               onClick={handleNavigation}
             >
               View products

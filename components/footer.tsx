@@ -19,19 +19,10 @@ const Footer = () => {
             <h1 className="text-lg md:text-xl font-bold">Menu</h1>
             <div className="space-y-2">
               <h1>
-                <Link href={"/"}>New Arrivals</Link>
+                <Link href={"/"}>Home</Link>
               </h1>
               <h1>
-                <Link href={"/"}>Best sellers</Link>
-              </h1>
-              <h1>
-                <Link href={"/"}>Recently viewed</Link>
-              </h1>
-              <h1>
-                <Link href={"/"}>Popular this week</Link>
-              </h1>
-              <h1>
-                <Link href={"/"}>All Products</Link>
+                <Link href={"/productlisting"}>All Products</Link>
               </h1>
             </div>
           </div>
@@ -41,20 +32,28 @@ const Footer = () => {
             <h1 className="text-lg md:text-xl font-bold">Categories</h1>
             <div className="space-y-2">
               <h1>
-                <Link href={"/"}>Crockery</Link>
+              <Link href={"/Planpots"}>Plant pots</Link>
               </h1>
               <h1>
-                <Link href={"/"}>Furniture</Link>
+                <Link href={"/ceramics"}> Ceramics</Link>
               </h1>
               <h1>
-                <Link href={"/"}>Homeware</Link>
+                <Link href={"/tables"}>Tables</Link>
               </h1>
               <h1>
-                <Link href={"/"}>Plant pots</Link>
+                <Link href={"/chairs"}>Chairs</Link>
               </h1>
               <h1>
-                <Link href={"/"}>Chairs</Link>
+                <Link href={"/crockery"}>Crockery</Link>
               </h1>
+              <h1>
+                <Link href={"/tableware"}>Tableware</Link>
+              </h1>
+              <h1>
+                <Link href={"/cutlery"}>Cutlery</Link>
+              </h1>
+              
+                
             </div>
           </div>
 

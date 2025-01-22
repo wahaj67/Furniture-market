@@ -78,9 +78,19 @@ export const getProductsByCategory = async (categorySlug: string) => {
         name,
         price,
         image,
+        description,
         category->{
-          title
-        }
+          title,
+          slug
+        },
+        dimensions{
+    width,
+    height,
+    depth
+    },
+    features,
+    slug,
+    quantity
       }
     `;
   

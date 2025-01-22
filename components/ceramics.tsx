@@ -1,7 +1,54 @@
+"use client"
+import { addItem } from "@/redux/CartSlice";
+import { urlFor } from "@/sanity/lib/image";
+import { fetchProductsByCategory } from "@/SanityQuery";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
+interface Ip {
+    name: string
+    price: number
+    description: string
+    image: string
+    category: {
+       title: string
+    },
+    dimensions: {
+       width: string
+       height: string
+       depth: string
+    },
+    features: string[]
+    quantity: number
+    _id: string
+    qunantity: number;
+ }
+ 
+ interface Iproduct {
+    id: string;
+    name: string;
+    price: number;
+    image: string;
+    quantitys: number
+ }
+ 
 const Ceramics = () => {
+    const [products, setProducts] = useState<Ip[]>([])
+   const dispatch = useDispatch()
+
+   const slug = "ceramics"
+   useEffect(() => {
+      const fetchedProducts = async () => {
+         const response = await fetchProductsByCategory(slug)
+         setProducts(response)
+      }
+      fetchedProducts()
+   }, [])
+
+   const handleAdd = (pros: Iproduct) => {
+      dispatch(addItem(pros));
+   };
     return (
         <>
             <section>
@@ -11,74 +58,45 @@ const Ceramics = () => {
 
 
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12">
-
-                        <div className="w-full h-auto">
+                          {products.map((pro:Ip,index:number)=>(
+                        <div className="w-full h-auto" key={index}>
                             <Image
-                                src={"/chair.png"}
+                                src={urlFor(pro.image).url()}
                                 height={700}
                                 width={700}
-                                alt="chair"
+                                alt={pro.name}
                                 className="w-full h-[80%] object-cover transition-transform duration-300 ease-in-out hover:scale-105 hover:translate-y-1"
                             />
                             <div className="mt-4 text-[#2A254B]">
-                                <p className="py-2">The Dandy Chair</p>
-                                <p>$250</p>
+                                <p className="py-2 text-xl font-bold">{pro.name}</p>
+                                <p className="text-sm text-gray-700 font-semibold">${pro.price}</p>
                             </div>
+                            <div className="w-full mt-2">
+                  <button
+                     onClick={() =>
+                        handleAdd({
+                           id: pro._id,
+                           name: pro.name,
+                           price: pro.price,
+                           image: pro.image,
+                           quantitys: pro.qunantity || 1
+                        })
+                     }
+                     className="bg-blue-500 mt-2 text-white px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-black transition-colors duration-500 w-full"
+                  >
+                     Add to Cart
+                  </button>
+               </div>    
                         </div>
+                        
+                
+                ))}
 
 
-                        <div className="w-full h-auto">
-                            <Image
-                                src={"/vase.png"}
-                                height={700}
-                                width={700}
-                                alt="vase"
-                                className="w-full h-[80%] object-cover transition-transform duration-300 ease-in-out hover:scale-105 hover:translate-y-1"
-                            />
-                            <div className="mt-4 text-[#2A254B]">
-                                <p className="py-2">Rustic VaseSet</p>
-                                <p>$155</p>
-                            </div>
-                        </div>
-
-
-                        <div className="w-full h-auto">
-                            <Image
-                                src={"/silky.png"}
-                                height={700}
-                                width={700}
-                                alt="silky vase"
-                                className="w-full h-[80%] object-cover transition-transform duration-300 ease-in-out hover:scale-105 hover:translate-y-1"
-                            />
-                            <div className="mt-4 text-[#2A254B]">
-                                <p className="py-2">The Silky Vase</p>
-                                <p>$125</p>
-                            </div>
-                        </div>
-
-
-                        <div className="w-full h-auto">
-                            <Image
-                                src={"/lamp.png"}
-                                height={700}
-                                width={700}
-                                alt="lamp"
-                                className="w-full h-[80%] object-cover transition-transform duration-300 ease-in-out hover:scale-105 hover:translate-y-1"
-                            />
-                            <div className="mt-4 text-[#2A254B]">
-                                <p className="py-2">The Lucky Lamp</p>
-                                <p>$399</p>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div className="my-10 flex justify-center items-center">
-                        <button className="bg-[#F9F9F9] py-4 px-6 rounded-[5px] text-[#2A254B]">
-                            View collection
-                        </button>
-                    </div>
+                    
                 </div>
+                </div>
+
             </section>
         </>
     );

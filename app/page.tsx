@@ -18,7 +18,7 @@ export default async function Home() {
   console.log(data,"data")
   
   return (
-   <>
+   <div className="container">
    <Hero />
    <Brand />
    <Ceramics />
@@ -27,6 +27,6 @@ export default async function Home() {
    <Touch />
    
 
-   </>
+   </div>
   );
 }
