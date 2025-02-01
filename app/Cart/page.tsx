@@ -8,6 +8,10 @@ import React  from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { FaPlus } from "react-icons/fa6";
+import { FaMinus } from "react-icons/fa6";
+
+
 
 interface IProd {
   _id: string
@@ -92,17 +96,17 @@ const Cart = () => {
                       <p className="mt-2 text-base font-semibold">£{pro.price * pro.quantitys}</p>
                     </div>
                   </div>
-                  <button onClick={()=>handleIncrease(pro)}>
-                    +
+                  <button onClick={()=>handleIncrease(pro)} className="font-extrabold">
+                    <FaPlus size={25}/>
                   </button>
                   <div className="flex flex-col items-center">
-                    <h1 className="text-sm font-semibold sm:hidden lg:block">{pro.quantitys}</h1>
+                    <h1 className="text-xl font-semibold sm:hidden lg:block">{pro.quantitys}</h1>
                   </div>
-                  <button onClick={()=>handleDecrease(pro._id)} >
-                    -
+                  <button onClick={()=>handleDecrease(pro._id)} className="font-extrabold" >
+                    <FaMinus size={25}/>
                   </button>
                   <button onClick={() => handleRemove(pro._id)}>
-                    <RiDeleteBin6Line />
+                    <RiDeleteBin6Line size={25} color="red" />
                   </button>
                 </div>
               ))}
