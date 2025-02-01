@@ -26,12 +26,12 @@ interface Ip {
 }
 
 interface Iproduct {
-   id: string;
+   _id: string;
    name: string;
    price: number;
    image: string;
-   quantitys: number
-}
+   quantitys:number
+ }
 
 const Ceramics = () => {
 
@@ -48,8 +48,8 @@ const Ceramics = () => {
    }, [])
 
    const handleAdd = (pros: Iproduct) => {
-      dispatch(addItem(pros));
-   };
+       dispatch(addItem(pros));
+     };
 
    return (
       <div className="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
@@ -106,12 +106,12 @@ const Ceramics = () => {
                   <button
                      onClick={() =>
                         handleAdd({
-                           id: prod._id,
+                           _id: prod._id,
                            name: prod.name,
                            price: prod.price,
                            image: prod.image,
-                           quantitys: prod.qunantity || 1
-                        })
+                           quantitys:prod.qunantity||1
+                         })
                      }
                      className="bg-blue-500 mt-2 text-white px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-black transition-colors duration-500 w-full"
                   >

@@ -76,6 +76,7 @@ export const getProductsByCategory = async (categorySlug: string) => {
     const query = `
       *[_type == "product" && category->slug.current == $slug] {
         name,
+        _id,
         price,
         image,
         description,

@@ -26,7 +26,7 @@ interface Ip {
  }
  
  interface Iproduct {
-    id: string;
+    _id: string;
     name: string;
     price: number;
     image: string;
@@ -75,7 +75,7 @@ const Ceramics = () => {
                   <button
                      onClick={() =>
                         handleAdd({
-                           id: pro._id,
+                           _id: pro._id,
                            name: pro.name,
                            price: pro.price,
                            image: pro.image,

@@ -26,7 +26,7 @@ interface Ip {
 }
 
 interface Iproduct {
-   id: string;
+   _id: string;
    name: string;
    price: number;
    image: string;
@@ -106,7 +106,7 @@ const Table = () => {
                   <button
                      onClick={() =>
                         handleAdd({
-                           id: prod._id,
+                           _id: prod._id,
                            name: prod.name,
                            price: prod.price,
                            image: prod.image,

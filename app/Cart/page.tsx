@@ -4,13 +4,13 @@ import { RootState } from "@/redux/store";
 import { urlFor } from "@/sanity/lib/image";
 // import { addItem } from "@/redux/CartSlice";
 import Image from "next/image";
-import React, { useRef } from "react";
+import React  from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
 interface IProd {
-  id: string
+  _id: string
   name: string
   price: number
   image: string
@@ -25,33 +25,37 @@ const Cart = () => {
 
   //  }
 
-  const inputRef = useRef<HTMLDivElement>(null)
-  const item = useSelector((state: RootState) => state.cart)
+  // const inputRef = useRef<HTMLDivElement>(null)
+  const item = useSelector((state: RootState) => {
+    console.log("Redux State in Cart:", state.cart);
+    return state.cart;
+  });
+  
+  // const scrollRight = () => {
+  //   if (inputRef.current) {
+  //     (inputRef.current as HTMLElement).scrollBy({
+  //       left: 200,
+  //       behavior: 'smooth'
+  //     })
+  //   }
+  // }
+  // const scrollLeft = () => {
+  //   if (inputRef.current) {
+  //     (inputRef.current as HTMLElement).scrollBy({
+  //       left: -200,
+  //       behavior: 'smooth'
+  //     });
+  //   }
+  // };
 
-  const scrollRight = () => {
-    if (inputRef.current) {
-      (inputRef.current as HTMLElement).scrollBy({
-        left: 200,
-        behavior: 'smooth'
-      })
-    }
-  }
-  const scrollLeft = () => {
-    if (inputRef.current) {
-      (inputRef.current as HTMLElement).scrollBy({
-        left: -200,
-        behavior: 'smooth'
-      });
-    }
-  };
-
-  const handleRemove = (id: string) => {
-    dispatch(remove(id))
+  const handleRemove = (_id: string) => {
+    dispatch(remove(_id))
   }
 
   const handleIncrease = (pro: IProd) => {
-    dispatch(addItem(pro))
-  }
+    console.log("Product being added:", pro);
+    dispatch(addItem(pro));
+  };
 
   const handleDecrease = (id: string) => {
     dispatch(decreaseQuantity(id))
@@ -64,87 +68,57 @@ const Cart = () => {
   }
 
   return (
-    <>
-      <div className="bg-gray-200 w-full px-4 sm:px-10 lg:px-40 pt-10 pb-16 h-auto text-purple-500">
-        <h1 className="text-2xl sm:text-3xl text-center lg:text-left">
-          Your Shoppintg Cart
-
-        </h1>
-
-        <div className="mt-8">
-          <div className="flex items-center justify-between">
-            <button className="bg-gray-400 hover:bg-gray-600 text-white rounded-full p-2"
-              onClick={scrollLeft}
-            >
-              ←
-            </button>
-            <div
-              ref={inputRef}
-              className=" flex overflow-x-auto gap-6 p-4 scrollbar-hide"
-              style={{ scrollBehavior: 'smooth' }}
-            > {item.map((it: IProd, index: number) => (
-              <div key={index} className="flex-shrink-0 w-60 border-2 p-4 rounded-md bg-white shadow-md">
-                
-                <div style={{ width: '200px', height: '200px', overflow: 'hidden' }}>
-                  <Image
-                    src={urlFor(it.image).url()}
-                    alt={it.name}
-                    width={200}
-                    height={200}
-                    className="rounded-md"
-                    style={{
-                      width: '200px',
-                      height: '200px',
-                      objectFit: 'cover',
-                    }}
-                  />
-                </div>
-            
-                <h1 className="text-lg font-medium mt-4">{it.name}</h1>
-                <p className="text-gray-600 mt-2">{it.price}</p>
-                <div className="flex justify-center space-x-5 items-center text-center mt-4 shadow-gray-600 shadow-md">
-                  <button
-                    onClick={() => handleIncrease(it)}
-                    className="text-2xl text-black font-semibold shadow-lg text-center"
-                  >
+<>    
+    <div>
+      <div className="bg-gray-200 w-full px-4 sm:px-10 lg:px-40 pt-10 pb-16 h-auto text-custom-purple">
+        <h1 className="text-2xl sm:text-3xl text-center lg:text-left">Your Shopping Cart</h1>
+        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 pt-10">
+          <div className="border-2 p-4">
+            <h1 className="text-lg font-semibold">Product</h1>
+            <div className="mt-8">
+              {item.map((pro: IProd , index: number) => (
+                <div key={index} className="flex justify-between items-start mb-4">
+                  <div className="flex">
+                    <Image
+                      src={urlFor(pro.image).url()}
+                      width={80}
+                      height={80}
+                      alt={pro.name}
+                      className="w-20 h-20 sm:w-28 sm:h-28 transition-transform duration-300 ease-in-out hover:scale-105 hover:translate-y-1"
+                    />
+                    <div className="ml-6">
+                      <h1 className="text-base sm:text-lg font-medium">{pro.name}</h1>
+                      <p className="mt-2 text-base font-semibold">£{pro.price * pro.quantitys}</p>
+                    </div>
+                  </div>
+                  <button onClick={()=>handleIncrease(pro)}>
                     +
                   </button>
-                  <span className="text-xl text-gray-700 font-bold cursor-pointer">{it.quantitys}</span>
-                  <button
-                    className="text-3xl shadow-lg bg-gray-100 text-black font-semibold text-center"
-                    onClick={() => handleDecrease(it.id)}
-                  >
+                  <div className="flex flex-col items-center">
+                    <h1 className="text-sm font-semibold sm:hidden lg:block">{pro.quantitys}</h1>
+                  </div>
+                  <button onClick={()=>handleDecrease(pro._id)} >
                     -
                   </button>
-                  <button
-                    className="text-red-700 rounded"
-                    onClick={() => handleRemove(it.id)}
-                  >
-                    <RiDeleteBin6Line size={25} />
+                  <button onClick={() => handleRemove(pro._id)}>
+                    <RiDeleteBin6Line />
                   </button>
                 </div>
-              </div>
-            ))}
-
+              ))}
+            </div>
+          </div>        </div>
+          </div>
             </div>
 
-            <button className="bg-gray-400 hover:bg-gray-600 text-white rounded-full p-2"
-              onClick={scrollRight}
-            >
-              →
-            </button>
-
-          </div>
-
-        </div>
 
         <div className="mt-8 flex justify-center">
           <button className="bg-[#4E4D93] h-12 sm:h-14 w-full sm:w-56 rounded-sm text-white">
             Go to Checkout
           </button>
         </div>
-      </div>
-    </>
+
+  </>   
   )
 
 };
