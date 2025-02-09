@@ -27,7 +27,7 @@ import { client } from "./sanity/lib/client"
 
 export const getProductsByCategory = async (categorySlug: string) => {
     const query = `
-      *[_type == "product" && category->slug?.current == $categorySlug]{
+      *[_type == "product" && category->slug.current == $categorySlug]{
         _id,
         name,
         price,

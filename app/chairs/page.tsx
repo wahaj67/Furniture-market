@@ -3,7 +3,6 @@ import { addItem } from '@/redux/CartSlice'
 import { urlFor } from '@/sanity/lib/image'
 import { fetchProductsByCategory } from '@/SanityQuery'
 import Image from 'next/image'
-import { toast } from 'nextjs-toast-notify'
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 
@@ -51,15 +50,7 @@ const Chairs = () => {
    const handleAdd = (pros: Iproduct) => {
       dispatch(addItem(pros));
    };
-   const handle=()=>{
-      toast.success("order Added Sucessfully!",{
-        position:'top-center',
-        progress:true,
-        sound:true,
-        duration:5000,
-        transition:'popUp'
-      })
-   }
+
    return (
       <div className="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
          {products.map((prod: Ip, index: number) => (
@@ -113,7 +104,7 @@ const Chairs = () => {
               
                <div className="w-full mt-2">
                   <button
-                     onClick={() =>{
+                     onClick={() =>
                         handleAdd({
                            _id: prod._id,
                            name: prod.name,
@@ -121,8 +112,7 @@ const Chairs = () => {
                            image: prod.image,
                            quantitys: prod.qunantity || 1
                         })
-                        handle()
-                     }}
+                     }
                      className="bg-blue-500 mt-2 text-white px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-black transition-colors duration-500 w-full"
                   >
                      Add to Cart
@@ -132,7 +122,6 @@ const Chairs = () => {
          ))}
       </div>
    )
-
 }
 
 export default Chairs
