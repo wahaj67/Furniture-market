@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { toast } from "nextjs-toast-notify";
 
 export interface IProd {
   _id: string;
@@ -65,7 +66,15 @@ const ProductListing = () => {
       </div>
     );
   }
-
+const handle=()=>{
+  toast.success("order Added Sucessfully!",{
+    position:'top-center',
+    progress:true,
+    sound:true,
+    duration:5000,
+    transition:'popUp'
+  })
+}
   return (
     <>
       <section className="px-4 py-6">
@@ -96,7 +105,7 @@ const ProductListing = () => {
                     </button>
                   </Link>
                   <button
-                    onClick={() =>
+                    onClick={() =>{
                       handleAdd({
                         _id: product._id,
                         name: product.name,
@@ -104,7 +113,9 @@ const ProductListing = () => {
                         image: product.image,
                         quantitys:product.qunantity||1
                       })
-                      
+                      handle()
+
+                    }
                     }
                     className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-black transition-colors duration-500 w-full sm:w-auto"
                   >
