@@ -1,11 +1,12 @@
 import { createClient } from '@sanity/client'
+import { datasetss, projectIds, tokenss } from '../env'
 
 
 
 export const client = createClient({
-  projectId:process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+  projectId:projectIds,
+  dataset:datasetss,
   apiVersion:'2025-01-19',
   useCdn: false, 
-  token: process.env.SANITY_API_TOKEN
+  token: tokenss
 })

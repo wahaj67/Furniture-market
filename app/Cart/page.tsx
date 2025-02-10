@@ -1,5 +1,5 @@
 "use client";
-import { addItem, decreaseQuantity, remove } from "@/redux/CartSlice";
+import { addItem, decreaseQuantity, remove, removeAllItems } from "@/redux/CartSlice";
 import { RootState } from "@/redux/store";
 import { urlFor } from "@/sanity/lib/image";
 // import { addItem } from "@/redux/CartSlice";
@@ -10,6 +10,8 @@ import { useDispatch } from "react-redux";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa6";
+import { useRouter } from "next/navigation";
+import { showSuccessToast } from "@/components/Modals/Modals";
 
 
 
@@ -22,6 +24,7 @@ interface IProd {
 }
 
 const Cart = () => {
+  const router = useRouter()
 
   const dispatch = useDispatch();
   //  const handleAdd=(products:IProd)=>{
@@ -35,6 +38,13 @@ const Cart = () => {
     return state.cart;
   });
   
+  const handleCheckout = ()=>{
+    sessionStorage.setItem("cartItems",JSON.stringify(item))
+    dispatch(removeAllItems())
+    router.push("/proceed"),
+    showSuccessToast("Order Succesfuly checkout!")
+
+  }
   // const scrollRight = () => {
   //   if (inputRef.current) {
   //     (inputRef.current as HTMLElement).scrollBy({
@@ -105,7 +115,9 @@ const Cart = () => {
                   <button onClick={()=>handleDecrease(pro._id)} className="font-extrabold" >
                     <FaMinus size={25}/>
                   </button>
-                  <button onClick={() => handleRemove(pro._id)}>
+                  <button onClick={() => {handleRemove(pro._id)
+                    showSuccessToast("Product Deleted Successfully!")
+                  }}>
                     <RiDeleteBin6Line size={25} color="red" />
                   </button>
                 </div>
@@ -117,7 +129,7 @@ const Cart = () => {
 
 
         <div className="mt-8 flex justify-center">
-          <button className="bg-[#4E4D93] h-12 sm:h-14 w-full sm:w-56 rounded-sm text-white">
+          <button onClick={()=>{handleCheckout()}} className="bg-[#4E4D93] h-12 sm:h-14 w-full sm:w-56 rounded-sm text-white">
             Go to Checkout
           </button>
         </div>

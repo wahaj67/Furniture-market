@@ -1,4 +1,5 @@
 "use client";
+import { showSuccessToast } from "@/components/Modals/Modals";
 import { addItem } from "@/redux/CartSlice";
 import { urlFor } from "@/sanity/lib/image";
 import { getProducts } from "@/SanityQuery";
@@ -96,7 +97,7 @@ const ProductListing = () => {
                     </button>
                   </Link>
                   <button
-                    onClick={() =>
+                    onClick={() =>{
                       handleAdd({
                         _id: product._id,
                         name: product.name,
@@ -104,7 +105,9 @@ const ProductListing = () => {
                         image: product.image,
                         quantitys:product.qunantity||1
                       })
-                      
+                                         showSuccessToast("Product added successfully in Cart! ")
+                    
+                    }
                     }
                     className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-black transition-colors duration-500 w-full sm:w-auto"
                   >
