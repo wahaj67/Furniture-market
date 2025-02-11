@@ -4,7 +4,7 @@ import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { v4 as uuidv4, v4 } from 'uuid';
+import { v4 as uuidv4,  } from 'uuid';
 
 interface IProd {
   _id: string;

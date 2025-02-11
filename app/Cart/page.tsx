@@ -41,7 +41,8 @@ const Cart = () => {
   const handleCheckout = ()=>{
     sessionStorage.setItem("cartItems",JSON.stringify(item))
     dispatch(removeAllItems())
-    router.push("/proceed"),
+    router.push("/proceed")
+    
     showSuccessToast("Order Succesfuly checkout!")
 
   }
