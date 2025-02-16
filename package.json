@@ -16,7 +16,7 @@
     "@sanity/vision": "^3.70.0",
     "axios": "^1.7.9",
     "dotenv": "^16.4.7",
-    "next": "15.0.4",
+    "next": "^15.1.7",
     "next-sanity": "^9.8.38",
     "nextjs-toast-notify": "^1.35.0",
     "react": "^19.0.0",
